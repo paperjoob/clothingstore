@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 
-import { auth} from './firebase/firebase.utils';
+// Firebase
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import HomePage from './pages/homepages/HomePage';
 import ShopPage from './pages/shop/shop.component';
@@ -19,9 +20,10 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       // set current user to the CurrentUser object
-      this.setState({ currentUser: user });
+      // this.setState({ currentUser: user });
+      createUserProfileDocument(user);
 
       console.log(user);
     })
