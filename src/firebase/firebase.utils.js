@@ -17,6 +17,9 @@ const firebaseConfig = {
     measurementId: "G-L5QRKTLNHX"
   };
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 // take the userAth object and store it inside the Firebase database
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   // if the userauth doesnt exist; exit this function
@@ -51,9 +54,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   // always return the userRef
   return userRef;
 };
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
   export const auth = firebase.auth(); // anything related to authentication
   export const firestore = firebase.firestore();
